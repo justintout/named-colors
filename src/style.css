@@ -1,0 +1,81 @@
+:root {
+  --picker-text: black;
+}
+
+#picker {
+  max-width: fit-content;
+  padding: 1rem;
+  border-radius: 12px;
+   transition: 0.2s ease-out background;
+}
+
+#picker table {
+  transition: 0.2s ease-out background;
+  caption-side: bottom;
+  border-spacing: 0 3px;
+}
+
+#picker td, 
+#picker th, 
+#picker label, 
+#picker caption, 
+#picker caption a, 
+#picker legend {
+  color: var(--picker-text);
+}
+
+caption {
+  padding-block: 1rem;
+}
+
+td, th {
+  font-size: 1.4rem;
+}
+
+thead th {
+  font-weight: lighter;
+  font-size: .8rem;
+}
+
+tr th {
+  font-weight: normal;
+}
+
+#picker-preferences {
+  display: flex;
+  gap: 4rem;
+  padding-inline: 2rem;
+}
+
+#picker-preferences fieldset {
+  display: flex;
+  gap: 2rem;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+}
+
+.bar-name {
+  align-content: center;
+  text-align: start;
+  padding-inline-end: 0.5em;
+  transition: color 0.2s ease-out 0s;
+}
+
+.bar:first-of-type td:first-of-type {
+  border-radius: 8px 0 0 0;
+}
+.bar:first-of-type th:last-of-type {
+  border-radius: 0 8px 0 0;
+}
+
+.bar:last-of-type td:first-of-type {
+  border-radius: 0 0 0 8px;
+}
+.bar:last-of-type th:last-of-type {
+  border-radius: 0 0 8px 0;
+}
+

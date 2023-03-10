@@ -1,0 +1,17 @@
+{
+  "name": "web-colors",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "author": "Justin Tout",
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "color-convert": "^2.0.1"
+  },
+  "license": "MIT"
+}

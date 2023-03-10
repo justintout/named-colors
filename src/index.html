@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Named CSS Colors</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background:rgba(250,250,250,50); transition: 0.5s ease-out background">
+  <header>
+    <h1>Named CSS Colors</h1>
+    <p>
+      Click a color to add it to the palette. Shift click a color to set the picker background. 
+    </p>
+  </header>
+  <main>
+    <div id="palette">
+    </div>
+
+    <div id="picker">
+      <form id="picker-preferences">
+        <fieldset id="picker-preferences-sort-fieldset">
+          <legend>Sort</legend>
+          <div class="input">
+            <label for="picker-preferences-sort">Sort by: </label>
+            <select name="sort" id="picker-preferences-sort-type">
+              <option value="hsl">HSL</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+          <div class="input">
+            <label for="picker-preferences-invert">Invert?</label>
+            <input type="checkbox" name="invert" id="picker-preferences-sort-invert">
+          </div>
+        </fieldset>
+        <fieldset id="picker-preferences-filter-fieldset">
+          <legend>Filter</legend>
+          <div class="input">
+            <label for="pref-redness">Redness</label>
+            <input type="range" name="redness" id="picker-preferences-filter-redness" min="-190" max="200">
+          </div>
+          <div class="input">
+            <label for="picker-preferences-filter-greenness">Greeness</label>
+            <input type="range" name="greeness" id="picker-preferences-filter-greenness" min="-190" max="200">
+          </div>
+          <div class="input">
+            <label for="picker-preferences-filter-blueness">Blueness</label>
+            <input type="range" name="blueness" id="picker-preferences-filter-blueness" min="-190" max="200">
+          </div>
+          <button id="picker-preferences-filter-reset">Reset</button>
+        </fieldset>
+        <button id="picker-background-white">Set white background</button>
+        <button id="picker-background-black">Set black background</button>
+      </form>
+      <table id="picker-swatches">
+        <thead>
+          <tr>
+            <th colspan="10" scope="colgroup">Alpha</th>
+          </tr>
+          <tr>
+            <th scope="col">1.0</th>
+            <th scope="col">0.9</th>
+            <th scope="col">0.8</th>
+            <th scope="col">0.7</th>
+            <th scope="col">0.6</th>
+            <th scope="col">0.5</th>
+            <th scope="col">0.4</th>
+            <th scope="col">0.3</th>
+            <th scope="col">0.2</th>
+            <th scope="col">0.1</th>
+            <th scope="col" style="text-align: start; padding-inline-start: 1rem;">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <caption>
+          Sourced from <a href="https://w3c.github.io/csswg-drafts/css-color/#color-syntax">the W3C</a>.
+        </caption>
+      </table>
+    </div>
+  </main>
+</body>
+<script type="module">
+import { main } from './index.ts';
+(async () => main())();
+</script>
+</html>
