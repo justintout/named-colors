@@ -1,4 +1,4 @@
-import { Color } from "./color";
+import { Color } from "../color/color";
 
 export function filterColors(colors: Color[], redness: number, greenness: number, blueness: number): Color[] {
   return colors

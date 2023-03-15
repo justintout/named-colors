@@ -1,4 +1,4 @@
-import { Color, RGBA, textContrast } from "./color";
+import { Color, RGBA, textContrast } from "../color/color";
 import { filterColors } from "./filter";
 import { Sort, sortColors } from "./sort";
 
@@ -13,7 +13,7 @@ export type FilterPreferences = {
   blueness: number;
 }
 
-type Preferences = {
+export type Preferences = {
   sort: SortPreferences;
   filter: FilterPreferences;
 }
@@ -98,7 +98,10 @@ const defaultPreferences: Preferences = {
   }
 }
 
-function mergeDefaultPreferences(preferences): Preferences {
+function mergeDefaultPreferences(preferences?: Partial<Preferences>): Preferences {
+  if (!preferences) {
+    return defaultPreferences;
+  }
   const p = {
     ...defaultPreferences,
     ...definedKeys(preferences)

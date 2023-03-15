@@ -11,6 +11,14 @@ export type Color = {
   hsl: HSL,
 }
 
+export interface AlphaColor extends Color {
+  alpha: number;
+}
+
+export function alphaColorCSS(color: AlphaColor) {
+  return `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.alpha})`;
+}
+
 const aliases = {
   'aqua': ['cyan'],
   'fuschsia': ['magenta'],

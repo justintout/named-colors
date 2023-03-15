@@ -79,3 +79,19 @@ tr th {
   border-radius: 0 0 8px 0;
 }
 
+.palette-swatches {
+  height: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.palette-swatch {
+  height: 100%;
+  aspect-ratio: 1;
+}
+
+.palette {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}

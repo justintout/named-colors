@@ -1,4 +1,4 @@
-import { Color } from "./color";
+import { Color } from "../color/color";
 
 export type Sort = 'hsl' | 'name';
 type ColorSort = (a: Color, b: Color) => number;

@@ -1,5 +1,6 @@
-import { Color, RGBA } from "./color";
-import { Picker } from "./picker";
+import { Color } from "../color/color";
+import { EventMap } from "./event";
+import { Picker, Preferences } from "./picker";
 import { Sort } from "./sort";
 
 const pickerID = 'picker';
@@ -37,8 +38,11 @@ type DrawerElements = {
 export class PickerDrawer {
   private picker: Picker;
   private elements: DrawerElements;
-  constructor(picker: Picker) {
-    this.picker = picker;
+  private listeners: { [T in keyof EventMap]: ((this: PickerDrawer, ev: EventMap[T]) => void)[]} = {
+    'swatch-picked': [],
+  };
+  constructor(colors: Color[], preferences: Partial<Preferences>) {
+    this.picker = new Picker(colors, preferences);
     this.elements = {
       picker: document.querySelector(`#${pickerID}`)!,
       prefForm: document.querySelector(`#${preferenceFormID}`)!,
@@ -91,6 +95,13 @@ export class PickerDrawer {
     this.picker.setSort(this.sortPreferences);
     this.picker.setFilter(this.filterPreferences);
     this.drawSwatches();
+  }
+  addEventListener<T extends keyof EventMap>(type: T, listener: (this: PickerDrawer, ev: EventMap[T]) => any): void {
+    this.listeners[type].push(listener);
+  }
+  dispatchEvent<T extends keyof EventMap>(ev: EventMap[T]) {
+    console.log('dispatch', ev)
+    this.listeners[ev.type].forEach((l) => l(ev));
   }
   draw() {
     this.drawSwatches();
@@ -145,8 +156,12 @@ export class PickerDrawer {
     swatch.style.height = '5vw';
     swatch.style.aspectRatio = '1';
     swatch.style.border = '0 none';
-    swatch.addEventListener('click', () => {
-      this.setBackground(color.rgb.r, color.rgb.g, color.rgb.b, alpha);
+    swatch.addEventListener('click', (e) => {
+      if (e.shiftKey) {
+        this.setBackground(color.rgb.r, color.rgb.g, color.rgb.b, alpha);
+        return;
+      }
+      this.dispatchEvent(new CustomEvent('swatch-picked', {detail: { ...color, alpha}}));
     });
     return swatch;
   }
